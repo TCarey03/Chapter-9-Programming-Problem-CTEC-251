@@ -5,10 +5,17 @@ public class Main {
         Item sword = new Item("Iron Sword", 3.5);
         Item potion = new Item("Health Potion", 0.5);
 
-        sword.displayInfo();
-        potion.displayInfo();
+        Bag pouch = new Bag("Belt Pouch", 0.5);
 
-        System.out.println("Sword weight: " + sword.getWeight() + " lbs");
-        System.out.println("Potion weight: " + potion.getWeight() + " lbs");
+        pouch.add(sword);
+        pouch.add(potion);
+
+        System.out.println("=== Bag Contents ===");
+        pouch.displayInfo();
+
+        System.out.println();
+
+        System.out.println("Total bag weight: "
+                + pouch.getWeight() + " lbs");
     }
 }
