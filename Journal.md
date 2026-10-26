@@ -21,3 +21,13 @@ In this phase, I built a complete adventurer inventory with a main backpack, ind
 I tested an unsupported operation by attempting to add a potion to a sword. The operation threw an UnsupportedOperationException, which I caught with a try-catch block. This showed that individual items cannot contain other items.
 
 If a game designer wanted a new container type, such as a WeightlessBag, I could create a new class that extends InventoryComponent and implements the appropriate behavior. The existing Item and Bag classes would not need to change. This demonstrates the Open/Closed Principle because the system can be extended with new types without modifying existing classes.
+
+----------------
+
+Phase 4: Validation & Reflection
+
+In this phase, I tested my inventory system with an empty bag, removing an item, and calculating weights for nested containers. The empty bag returned only its base weight, and removing an item correctly reduced the total weight. The nested bags also calculated their weights correctly by including their own weight and the weight of their contents.
+
+I verified that the program handles unsupported operations on individual items using a try-catch block. These tests helped confirm that the Composite pattern works correctly for different inventory structures. I did not need to change the core design because the existing methods handled these cases.
+
+The testing reinforced how polymorphism and recursion allow the inventory to calculate weights without checking whether each component is an item or another bag.
