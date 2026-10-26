@@ -1,4 +1,3 @@
-
 public class Main {
 
     public static void main(String[] args) {
@@ -12,12 +11,12 @@ public class Main {
         Item ruby = new Item("Ruby", 0.2);
         Item goldCoin = new Item("Gold Coin", 0.1);
 
-        // Create a potion pouch
+        // Create potion pouch
         Bag potionPouch = new Bag("Potion Pouch", 0.3);
         potionPouch.add(healthPotion);
         potionPouch.add(manaPotion);
 
-        // Create a gem bag nested inside another bag
+        // Create nested gem bag
         Bag gemBag = new Bag("Gem Bag", 0.2);
         gemBag.add(ruby);
         gemBag.add(goldCoin);
@@ -25,7 +24,7 @@ public class Main {
         Bag holdingBag = new Bag("Bag of Holding", 0.5);
         holdingBag.add(gemBag);
 
-        // Create the main backpack
+        // Create main backpack
         Bag backpack = new Bag("Main Backpack", 2.0);
         backpack.add(bedroll);
         backpack.add(rope);
@@ -33,27 +32,51 @@ public class Main {
         backpack.add(potionPouch);
         backpack.add(holdingBag);
 
-        // Display the entire inventory
-        System.out.println("=== Complete Adventurer Inventory ===");
+        // Display full inventory
+        System.out.println("=== Complete Inventory ===");
         backpack.displayInfo();
-
-        // Calculate the total weight
-        System.out.println();
         System.out.println("Total Backpack Weight: "
                 + backpack.getWeight() + " lbs");
 
-        // Display an inner pouch independently
-        System.out.println();
-        System.out.println("=== Potion Pouch Only ===");
+        // Test displaying an inner pouch
+        System.out.println("\n=== Potion Pouch ===");
         potionPouch.displayInfo();
-
-        System.out.println("Potion Pouch Total Weight: "
+        System.out.println("Potion Pouch Weight: "
                 + potionPouch.getWeight() + " lbs");
 
-        // Demonstrate unsupported operations on an Item
-        System.out.println();
-        System.out.println("=== Testing Unsupported Operation ===");
+        // Test 1: Empty bag
+        System.out.println("\n=== Test 1: Empty Bag ===");
+        Bag emptyBag = new Bag("Empty Bag", 1.0);
+        emptyBag.displayInfo();
+        System.out.println("Empty bag weight: "
+                + emptyBag.getWeight() + " lbs");
 
+        // Test 2: Removing an item
+        System.out.println("\n=== Test 2: Remove an Item ===");
+        Bag testBag = new Bag("Test Bag", 1.0);
+        Item testSword = new Item("Test Sword", 3.0);
+        Item testPotion = new Item("Test Potion", 0.5);
+
+        testBag.add(testSword);
+        testBag.add(testPotion);
+
+        System.out.println("Weight before removal: "
+                + testBag.getWeight() + " lbs");
+
+        testBag.remove(testSword);
+
+        System.out.println("Weight after removal: "
+                + testBag.getWeight() + " lbs");
+
+        // Test 3: Nested weight calculation
+        System.out.println("\n=== Test 3: Nested Weight ===");
+        System.out.println("Gem Bag weight: "
+                + gemBag.getWeight() + " lbs");
+        System.out.println("Bag of Holding weight: "
+                + holdingBag.getWeight() + " lbs");
+
+        // Test 4: Unsupported operation on an item
+        System.out.println("\n=== Test 4: Unsupported Operation ===");
         try {
             sword.add(healthPotion);
         } catch (UnsupportedOperationException e) {
